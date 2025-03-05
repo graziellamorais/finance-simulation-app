@@ -1,39 +1,58 @@
-'use client'; // This ensures that this component is rendered on the client-side
+'use client';
 
 import React from 'react';
 import Link from 'next/link';
+import { MantineProvider, Container, Text } from '@mantine/core';
+import '@mantine/core/styles.css';
 
 const Layout = ({ children }) => {
     return (
-        <div className='min-h-screen flex flex-col'>
-            {/* Navegação */}
-            <nav className='bg-gray-800 text-white p-4'>
-                <div className='max-w-screen-lg mx-auto flex justify-between items-center'>
-                    <div className='text-2xl font-bold'>
-                        Minha Simulação Financeira
-                    </div>
-                    <div>
-                        <Link href='/' className='px-4 py-2'>
-                            Início
-                        </Link>
-                        <Link href='/simulation' className='px-4 py-2'>
-                            Simulação
-                        </Link>
-                    </div>
-                </div>
-            </nav>
+        <html lang='pt-BR'>
+            <body className='font-sans bg-gray-50 min-h-screen'>
+                <MantineProvider
+                    withGlobalStyles
+                    withNormalizeCSS
+                    theme={{
+                        fontFamily: 'sans-serif',
+                    }}>
+                    {/* Main wrapper for centering content */}
+                    <Container className='flex flex-row min-h-screen'>
+                        {/* Nav */}
+                        <nav
+                            className='w-full max-w-3xl mx-auto p-4'
+                            style={{
+                                display: 'flex',
+                                padding: '2rem',
+                            }}>
+                            <div className='space-x-6'>
+                                <Link href='/' className='text-white px-4 py-2'>
+                                    Início
+                                </Link>
+                                <Link
+                                    href='/simulation'
+                                    className='text-white px-4 py-2'>
+                                    Simulação
+                                </Link>
+                            </div>
+                        </nav>
 
-            {/* Conteúdo principal */}
-            <main className='flex-grow'>{children}</main>
+                        {/* Main Content Area */}
+                        <main className='flex-grow flex justify-center items-center p-4'>
+                            <div className='w-full max-w-3xl mx-auto'>
+                                {children}
+                            </div>
+                        </main>
 
-            {/* Rodapé */}
-            <footer className='bg-gray-800 text-white text-center py-4'>
-                <p>
-                    © 2025 Minha Simulação Financeira. Todos os direitos
-                    reservados.
-                </p>
-            </footer>
-        </div>
+                        {/* Footer */}
+                        <footer>
+                            <Text c='dimmed' size='xs'>
+                                © 2025 Minha Simulação. All rights reserved.
+                            </Text>
+                        </footer>
+                    </Container>
+                </MantineProvider>
+            </body>
+        </html>
     );
 };
 
