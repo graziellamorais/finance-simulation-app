@@ -14,6 +14,7 @@ import {
 } from '@mantine/core';
 
 const SimulationForm = () => {
+    // Initialize the form with empty values
     const form = useForm({
         initialValues: {
             pessoa: '',
@@ -25,6 +26,7 @@ const SimulationForm = () => {
         },
     });
 
+    // Function triggered when submitting the form
     const handleSubmit = (values) => {
         console.log('Form Data Submitted:', values);
     };
@@ -45,6 +47,7 @@ const SimulationForm = () => {
 
                 <form onSubmit={form.onSubmit(handleSubmit)}>
                     <Stack spacing='md'>
+                        {/* Selection field for person type (Individual or Legal Entity) */}
                         <Select
                             label='Pessoa'
                             placeholder='Selecione'
@@ -52,6 +55,7 @@ const SimulationForm = () => {
                             {...form.getInputProps('pessoa')}
                         />
 
+                        {/* Selection field for financing type */}
                         <Select
                             label='Tipo de Financiamento'
                             placeholder='Selecione'
@@ -69,6 +73,7 @@ const SimulationForm = () => {
                             {...form.getInputProps('tipoFinanciamento')}
                         />
 
+                        {/* Selection field for financing category */}
                         <Select
                             label='Categoria de Financiamento'
                             placeholder='Selecione'
@@ -94,18 +99,21 @@ const SimulationForm = () => {
                             {...form.getInputProps('categoriaFinanciamento')}
                         />
 
+                        {/* Input field for CPF */}
                         <TextInput
                             label='CPF'
                             placeholder='Digite seu CPF'
                             {...form.getInputProps('cpf')}
                         />
 
+                        {/* Input field for gross family income */}
                         <TextInput
                             label='Renda Bruta Familiar (mensal)'
                             placeholder='Digite sua renda'
                             {...form.getInputProps('renda')}
                         />
 
+                        {/* Radio button group for financing option */}
                         <Radio.Group
                             label='Opção de Financiamento'
                             {...form.getInputProps('opcaoFinanciamento')}>
@@ -125,6 +133,7 @@ const SimulationForm = () => {
                             </Stack>
                         </Radio.Group>
 
+                        {/* Submit button */}
                         <Button type='submit' fullWidth>
                             Enviar
                         </Button>
